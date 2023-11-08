@@ -1,0 +1,13 @@
+.card {
+    display: grid;
+    border-style: dotted;
+    border-color: blueviolet;
+    color: blue;
+    text-align: center;
+    margin: 10px;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
