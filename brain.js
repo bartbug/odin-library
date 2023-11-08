@@ -20,13 +20,16 @@ const zobbit = new Book("zobbit", "urmom", "5", false);
 myLibrary.push(hobbit);
 myLibrary.push(zobbit);
 
+let removeButtons; 
+
 function listLibrary() {
     let elements = document.getElementsByClassName("card");
     Array.from(elements).forEach(function (element) {
         element.remove();
     });
-
+    let i = 0;
     myLibrary.forEach((book) => {
+        
         const card = document.createElement('div');
         card.classList.add('card');
         
@@ -44,15 +47,33 @@ function listLibrary() {
         if (book.read) {
             haveread.setAttribute("checked", "true");
         }
+        
+        const removeBook = document.createElement("button");
+        removeBook.classList.add("remover");
+        removeBook.setAttribute("id", i);
+        removeBook.textContent = "Remove Book";
+
 
         card.appendChild(title);
         card.appendChild(author);
         card.appendChild(pagecount);
         card.appendChild(haveread);
+        haveread.addEventListener("change", () => {
+            book.read = !book.read;
+        })
+        card.appendChild(removeBook);
+        removeBook.addEventListener("click", () => {
+            myLibrary.splice(removeBook.id, 1);
+                console.log(removeBook.id);
+                listLibrary();
+        });
         container.appendChild(card);
+        i++;
+
     });
 }
 
+listLibrary();
 
 
 
@@ -63,6 +84,8 @@ const newTitle = favDialog.querySelector("#title");
 const newAuth = favDialog.querySelector("#author");
 const newPageCount = favDialog.querySelector("#pagecount");
 const confirmButton = favDialog.querySelector("#confirmButton");
+
+
 
 showButton.addEventListener("click", () => {
     favDialog.showModal();
@@ -84,4 +107,7 @@ confirmButton.addEventListener("click", (event) => {
     favDialog.close();
 });
 
-listLibrary();
+
+
+
+
