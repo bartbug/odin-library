@@ -3,14 +3,19 @@ const container = document.querySelector('#container');
 const myLibrary = [];
 
 
-function Book(title, author, pagecount, read) {
-    this.title = title;
-    this.author = author;
-    this.pagecount = pagecount;
-    this.read = read;
-    this.info = function() {
-        return [title, author, pagecount, read];
+class Book {
+    constructor(title, author, pagecount, read) {
+        this.title = title;
+        this.author = author;
+        this.pagecount = pagecount;
+        this.read = read;
     }
+
+    get info() {
+        return [title, author, pagecount, read]
+    }
+    
+    
 }
 
 const hobbit = new Book("hobbit", "urmom", "5", true);
